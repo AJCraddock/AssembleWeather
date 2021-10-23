@@ -15,6 +15,10 @@ app.get("/api/weather", async (req, res) => {
   }
 });
 
+app.get("/api/cities", async (req, res) => {
+  res.send('testing')
+});
+
 app.listen(process.env.PORT || 8080, () =>
   console.log(`Listening on port ${process.env.PORT || 8080}!`)
 );
