@@ -6,7 +6,8 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "target": "es6",
-    "lib": ["es2015", "dom"],
-    "esModuleInterop": true
+    "lib": ["es2015", "dom", "ES2019.Array"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   }
 }
