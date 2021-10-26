@@ -1,4 +1,4 @@
-import { weather } from "./weather";
+import { weather, cities } from "./actions";
 import express from "express";
 
 const app = express();
@@ -16,7 +16,12 @@ app.get("/api/weather", async (req, res) => {
 });
 
 app.get("/api/cities", async (req, res) => {
-  res.send('testing')
+  const query = req.query["term"];
+  try{
+    res.send(cities(query as string));
+  } catch (e) {
+    res.send(e);
+  }
 });
 
 app.listen(process.env.PORT || 8080, () =>
