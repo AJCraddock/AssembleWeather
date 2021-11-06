@@ -17,7 +17,7 @@ app.get("/api/weather", async (req, res) => {
 
 app.get("/api/cities", async (req, res) => {
   const query = req.query["term"];
-  const limit = req.query["limit"];
+  const limit = req.query["limit"] ?? 10;
   try{
     res.send(cities(query as string, parseInt(limit as string)));
   } catch (e) {
