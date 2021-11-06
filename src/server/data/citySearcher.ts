@@ -37,8 +37,8 @@ export class CitySearcher {
             document: this.docSchema
         }, {});
 
-        cityList.map((e) => 
-            this.cityIndex.add(e)
+        cityList.map((e, index) => 
+            this.cityIndex.add(index, e)
         );
     };
     
@@ -49,14 +49,14 @@ export class CitySearcher {
      * @returns an Array of the cities found matching the criteria
      */
     public search(term: string, limit: number = 10): City[] {
-        let result: SimpleDocumentSearchResultSetUnit[] = this.cityIndex.search(term, limit);
+        let result: SimpleDocumentSearchResultSetUnit[] = this.cityIndex.search(term, limit);    
         
         return this.retrieveCityResults(result).slice(0,limit);
     }
 
     private retrieveCityResults(results: SimpleDocumentSearchResultSetUnit[]) {
-        return results.flatMap((searchResultUnit: SimpleDocumentSearchResultSetUnit) => 
-            cityList.filter(city => searchResultUnit.result.includes(city.id))
+        return results.flatMap((searchResultUnit: SimpleDocumentSearchResultSetUnit) =>
+           searchResultUnit.result.map((resultIndex) => cityList[resultIndex])
         );
     }
 }
